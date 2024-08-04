@@ -7,6 +7,7 @@ set ylabel "Success rate [%]"
 # for i in {0..699}; do tail -1 temp/template_walsh_hadamar_succes_rate_autour_point_corrige_CENTRAL_POINT$i.txt | awk '{print $2}'; done > sr_exact.txt
 
 set yrange [0:*]
+# set grid xtics # Clock cycles seem to occur every 50 or 100 time samples ... NO, see "plot_avg.py"
 
 set output "sr_D1_SAMPLE100_coalescance.png"
 plot '-' lw 2 pt 7 ps 3 not, \
