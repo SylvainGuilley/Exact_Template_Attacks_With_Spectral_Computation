@@ -40,7 +40,7 @@
 
 #include <time.h>
 
-
+unsigned int CENTRAL_POINT = 350; // Default value
 
 
 #define TRUE_KEY 0x00 //0xA5
@@ -127,7 +127,7 @@ float bufferA[NB_SAMPLES];
 
 
 // nombre de mesures traitees
-#define NBMESURES 30//150 //700//40000// 1023 Max //c'est le D (la fenetre du temps)
+#define NBMESURES 1// 30//150 //700//40000// 1023 Max //c'est le D (la fenetre du temps)
 #include "Matrice.h"
 #define NB_ITE_ATTACKK 100//7// le nombre maximal de mesure lors de l'attaque
 //#define NB_ITE_PROFILING 256//le nombre maximal de mesure lors du profiling
@@ -170,7 +170,8 @@ FILE * Attack_traces_labels_file;
 
 void open_files(void)
 {
-sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Profiling_traces_traces.txt");
+sprintf(nom, // "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/"
+		"Profiling_traces_traces.txt");
 
    			   Profiling_traces_traces_file = fopen(nom,"r");
    			   if (Profiling_traces_traces_file==NULL)
@@ -178,7 +179,8 @@ sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Profiling_t
     		     	    printf("** Erreur d'ouverture du fichier1 '%s'** \n", nom);
     			   }
 
-sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Profiling_traces_labels.txt");
+sprintf(nom, // "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/"
+		"Profiling_traces_labels.txt");
 
    			   Profiling_traces_labels_file = fopen(nom,"r");
    			   if (Profiling_traces_labels_file==NULL)
@@ -186,7 +188,8 @@ sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Profiling_t
     		     	    printf("** Erreur d'ouverture du fichier2 '%s'** \n", nom);
     			   }
 
-sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Attack_traces_traces.txt");
+sprintf(nom, // "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/"
+		"Attack_traces_traces.txt");
 
    			   Attack_traces_traces_file = fopen(nom,"r");
    			   if (Attack_traces_traces_file==NULL)
@@ -194,7 +197,8 @@ sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Attack_trac
     		     	    printf("** Erreur d'ouverture du fichier3 '%s'** \n", nom);
     			   }
 
-sprintf(nom,  "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/Attack_traces_labels.txt");
+sprintf(nom, // "C:/Users/A/Desktop/Pratique/template_offline/ASCADtxt/"
+		"Attack_traces_labels.txt");
 
    			   Attack_traces_labels_file = fopen(nom,"r");
    			   if (Attack_traces_labels_file==NULL)
@@ -263,10 +267,10 @@ for(j=0;j<NB_SAMPLES;j++)
 	//printf("\n\nje suis à capture_template message_index=%d, j=%d\n\n",message_index,j);
 			   //[i0-22256-(int)(NBMESURES/2)+j]
     //x[j][q]
-	x[j][message_index]=bufferA[350-(int)(NBMESURES/2)+j];//39999-17744// 350=700/2 700 représente D qui est la longeur de la trace
+	x[j][message_index]=bufferA[CENTRAL_POINT-(int)(NBMESURES/2)+j];//39999-17744// CENTRAL_POINT=700/2 700 représente D qui est la longeur de la trace
 
 	//ymoyen[j][message_index^(TRUE_KEY)]
-        ymoyen[j][label]+=bufferA[350-(int)(NBMESURES/2)+j];
+        ymoyen[j][label]+=bufferA[CENTRAL_POINT-(int)(NBMESURES/2)+j];
  //^la clé
     }
 
@@ -433,8 +437,8 @@ for(i=0;i<NB_SAMPLES;i++)bufferA[i]=0.0;
  for (j=0;j<NBMESURES;j++)
  {
 
-  xmoyentran[j][label]+=All_Attack_traces[message_index][350-(int)(NBMESURES/2)+j];
-  //printf("All_Attack_traces[%d][%d]=%f\n",message_index, 350-(int)(NBMESURES/2)+j ,All_Attack_traces[message_index][350-(int)(NBMESURES/2)+j]);
+  xmoyentran[j][label]+=All_Attack_traces[message_index][CENTRAL_POINT-(int)(NBMESURES/2)+j];
+  //printf("All_Attack_traces[%d][%d]=%f\n",message_index, CENTRAL_POINT-(int)(NBMESURES/2)+j ,All_Attack_traces[message_index][CENTRAL_POINT-(int)(NBMESURES/2)+j]);
   //scanf("%*c");
  }
 
@@ -567,7 +571,7 @@ void travailler()
 
 FILE  *template_succes_rate_file; //
 
-sprintf(nom,CHEMIN "template_walsh_hadamar_succes_rate_autour_point_corrige.txt");
+sprintf(nom,CHEMIN "template_walsh_hadamar_succes_rate_autour_point_corrige_CENTRAL_POINT%d.txt", CENTRAL_POINT);
 template_succes_rate_file=fopen(nom,"a");
 if (template_succes_rate_file==NULL)
 
@@ -669,13 +673,14 @@ for (p=0;p<NB_ITE_ATTACK;p++) // 7
 
 //printf("\n\n\n\n");
 
- fprintf(template_succes_rate_file,"\n\n\nNBMESURES=%d\n",NBMESURES);
- fprintf(template_succes_rate_file,"round:%d\n\n\n\n",r-1);
+ fprintf(template_succes_rate_file,"\n\n\n# NBMESURES=%d\n",NBMESURES);
+ fprintf(template_succes_rate_file,"# round:%d\n\n\n\n",r-1);
 
  for(i=0; i<NB_ITE_ATTACK; i++)
  {
-   printf("template_NBM=%d %d      \n",i, success_rate[i]);
-   fprintf(template_succes_rate_file,"m=%d:%f \n",i,(float)success_rate[i]/(r));
+   printf("# template_NBM=%d %d      \n",i, success_rate[i]);
+//   fprintf(template_succes_rate_file,"m=%d:%f \n",i,(float)success_rate[i]/(r));
+   fprintf(template_succes_rate_file,"%d\t%f\n",i,(float)success_rate[i]/(r));
  }
 
  fflush(template_succes_rate_file);
@@ -686,8 +691,13 @@ for (p=0;p<NB_ITE_ATTACK;p++) // 7
 // termine le programme
 
 
-int main()
+int main( int argc, char ** argv )
 {
+	if( argc ==2 )
+	{
+		CENTRAL_POINT = atoi( argv[1] );
+	}
+
   printf("Hello analyse de consommation!\n");
 
     // initialisation

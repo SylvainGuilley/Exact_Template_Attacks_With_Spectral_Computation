@@ -40,6 +40,7 @@
 
 #include <time.h>
 
+unsigned int CENTRAL_POINT = 350; // Default value
 
 
 
@@ -560,7 +561,8 @@ void travailler()
 
 FILE  *template_succes_rate_file; //
 
-sprintf(nom,CHEMIN "template_walsh_hadamar_succes_rate_autour_point_corrige.txt");
+//sprintf(nom,CHEMIN "template_walsh_hadamar_succes_rate_autour_point_corrige.txt");
+sprintf(nom,CHEMIN "template_walsh_hadamar_succes_rate_autour_point_coalescance_CENTRAL_POINT%d.txt", CENTRAL_POINT);
 template_succes_rate_file=fopen(nom,"a");
 if (template_succes_rate_file==NULL)
 
@@ -662,13 +664,14 @@ for (p=0;p<NB_ITE_ATTACK;p++) // 7
 
 //printf("\n\n\n\n");
 
- fprintf(template_succes_rate_file,"\n\n\nNBMESURES=%d\n",NBMESURES);
- fprintf(template_succes_rate_file,"round:%d\n\n\n\n",r-1);
+ fprintf(template_succes_rate_file,"\n\n\n# NBMESURES=%d\n",NBMESURES);
+ fprintf(template_succes_rate_file,"# round:%d\n\n\n\n",r-1);
 
  for(i=0; i<NB_ITE_ATTACK; i++)
  {
    printf("template_NBM=%d %d      \n",i, success_rate[i]);
-   fprintf(template_succes_rate_file,"m=%d:%f \n",i,(float)success_rate[i]/(r));
+//   fprintf(template_succes_rate_file,"m=%d:%f \n",i,(float)success_rate[i]/(r));
+   fprintf(template_succes_rate_file,"%d\t%f\n",i,(float)success_rate[i]/(r));
  }
 
  fflush(template_succes_rate_file);
@@ -679,8 +682,12 @@ for (p=0;p<NB_ITE_ATTACK;p++) // 7
 // termine le programme
 
 
-int main()
+int main( int argc, char ** argv )
 {
+	if( argc ==2 )
+	{
+		CENTRAL_POINT = atoi( argv[1] );
+	}
   printf("Hello analyse de consommation!\n");
 
     // initialisation

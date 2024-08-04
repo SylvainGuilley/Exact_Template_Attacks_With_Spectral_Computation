@@ -1,0 +1,21 @@
+set terminal png enhanced
+
+set xlabel 'Sample of attack for {/Times-Italic D=1}'
+set ylabel "Success rate [%]"
+
+# for i in {0..699}; do tail -1 temp/template_walsh_hadamar_succes_rate_autour_point_coalescance_CENTRAL_POINT$i.txt | awk '{print $2}'; done > sr_coalescence.txt
+# for i in {0..699}; do tail -1 temp/template_walsh_hadamar_succes_rate_autour_point_corrige_CENTRAL_POINT$i.txt | awk '{print $2}'; done > sr_exact.txt
+
+set yrange [0:*]
+
+set output "sr_D1_SAMPLE100_coalescance.png"
+plot '-' lw 2 pt 7 ps 3 not, \
+'sr_coalescence.txt' lw 2 pt 1 not
+351 0.017000
+EOF
+
+set output "sr_D1_SAMPLE100_exact.png"
+plot '-' lw 2 pt 7 ps 3 not, \
+'sr_exact.txt' lw 2 pt 1 not
+351 0.937000
+EOF
