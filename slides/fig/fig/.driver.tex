@@ -1,0 +1,65 @@
+%-------------------------------------------------------------------------------
+% Filename:    .driver.tex
+% Description: This file converts "temp.pstex_t" into "driver.dvi"
+% Author:      Sylvain GUILLEY (sylvain.guilley@TELECOM-ParisTech.fr)
+% Note:        It can be accessed from anywhere in $ROOTDIR (use $ROOTDIR/.driver.tex)
+% Note:        This file is embedded neither into fig2eps nor into gnu2eps,
+%              because it is shared between those two scripts.
+%-------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[dvips]{graphicx} % Enables \reflectbox for mirrored text
+\usepackage[dvips,usenames]{color} % Usage: \textcolor{blue}{scan-chain}
+%\usepackage{stmaryrd} % \llbracket and \rrbracket
+\usepackage{mathrsfs} % For \mathscr{L}, the cursive version of L
+% The option [usenames] causes the definitions for the 68 colors known to dvips (such as BrickRed) to be preloaded.
+%\usepackage{rotating}
+\usepackage{epsfig}
+\usepackage{amsmath,amssymb}
+%\usepackage{stmaryrd} % Provides \llbracket and \rrbracket used for intervals of integers
+\definecolor{gris}{gray}{.730}% bbbbbb = .6875
+
+% <textonehalf>
+\usepackage{textcomp} % for \textonehalf (see: http://zoonek.free.fr/LaTeX/Fontes/fontes.html)
+\newcommand\myhalf{\raisebox{+0.65mm}{\small\textonehalf}}
+% Note: the character 189 (½) is not printed out as I expected... too bad!
+% </textonehalf>
+
+\usepackage{cancel}
+\usepackage{pifont}
+\usepackage{ifsym} % \textifsym{-123.678} displays segmented digits, as would appear on an LCD
+\font\manual=manfnt
+\def\dbend{{\manual\char127}} % dangerous bend sign
+\setlength{\textwidth}{100cm}
+\setlength{\textheight}{100cm}
+
+% <DES_VLSI>
+\newcommand{\PCone}{$\text{PC}_\text{1}$}
+\newcommand{\PCtwo}{$\text{PC}_\text{2}$}
+\newcommand{\LS}   {$\text{LS}$}
+\newcommand{\LStwo}{$\text{LS}^\text{2}$}
+\newcommand{\RS}   {$\text{RS}$}
+\newcommand{\RStwo}{$\text{RS}^\text{2}$}
+\newcommand{\RL}{Round logic}
+\newcommand{\KS}{Key\! schedule}
+% </DES_VLSI>
+
+% <20080918>
+\newcommand{\LL}{$0 \to 0$}
+\newcommand{\LH}{$0 \to 1$}
+\newcommand{\HL}{$1 \to 0$}
+\newcommand{\HH}{$1 \to 1$}
+% </20080918>
+
+\begin{document}
+\pagestyle{empty}
+
+% PS figure:
+%\begin{picture}(0,0)%
+%\includegraphics{temp.pstex}%
+%\end{picture}%
+
+% LaTeX picture:
+\input{temp.pstex_t}
+
+\end{document}
