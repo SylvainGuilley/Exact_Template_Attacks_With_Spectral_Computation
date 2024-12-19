@@ -1,0 +1,991 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+
+%
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+\let\oldvec\vec% Store \vec in \oldvec
+%\documentclass[onecolumn]{svjour3}          % twocolumn
+
+\documentclass{beamer}
+%\usetheme{CambridgeUS}
+\usetheme{Madrid}
+
+%\documentclass{easychair}
+%\documentclass[EPiC]{easychair}
+%\documentclass[EPiCempty]{easychair}
+%\documentclass[debug]{easychair}
+%\documentclass[verbose]{easychair}
+%\documentclass[notimes]{easychair}
+%\documentclass[withtimes]{easychair}
+%\documentclass[a4paper]{easychair}
+%\documentclass[letterpaper]{easychair}
+ %\usepackage{hyperref} %[colorlinks]
+
+\let\vec\oldvec% Restore \vec from \oldvec
+
+%\usepackage{doc}
+
+\usepackage{graphicx}
+%\pdfminorversion=7
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+\newcommand\mytitle[1]{\textcolor{blue}{``\em #1''}}
+\newcommand\myprop[1]{\textcolor{MyGreen8}{``\em #1''}}
+\usepackage{colortbl} % For \cellcolor
+\newcommand{\GC}{\cellcolor[gray]{.92}} % Gray Cell
+\newcommand{\GGC}{\cellcolor[gray]{.82}} % Gray Cell (darker)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsfonts}
+%%%%%%%%%%%%%%%%%%%% %added from the template attack paper %%%%%%%%%%%%
+\usepackage{mathptmx} % is also a math package and contain a reapeted \amalg
+\usepackage{amsmath}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength {\marginparwidth }{2cm} 
+\usepackage{todonotes}
+\usepackage{comment}
+%\usepackage[french]{babel}
+%\usepackage[T1]{fontenc} % For a proper hyphenation
+\usepackage{graphicx}
+\usepackage{epstopdf} % To use EPS files
+\graphicspath{{.}{img/}{fig/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+% The inclusion of those three packages is necessary to enjoy both of:
+%  - \begin{theorem}{bla bla} bli bli \end{theorem}
+%  - \begin{proof}  [bla bla] bli bli \qed\end{proof}    % As mentioned in §8 of llncs.pdf, \qed must be added manually
+%\usepackage{amsthm}
+\usepackage{proof}
+%*% \newtheorem{theorem}{Theorem}
+%*%\newtheorem{lemma}{Lemma}
+%\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+%\newtheorem{corollary}{Corollary}
+%\newtheorem{example}{Example}
+%*%\newtheorem{definition}{Definition}
+%\newtheorem{conjecture}{Conjecture}
+
+\usepackage{tabularx} % For \setlength{\extrarowheight}{2pt}
+\newcommand\transpose[1]{\ensuremath{{#1}^\mathsf{T}}}
+\allowdisplaybreaks[1] % (use \\* to avoid breaks at those locations)
+\DeclareMathOperator*\argmin{argmin}
+\DeclareMathOperator*\argmax{argmax}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator\TraceOperator{tr} % If using \text{tr}, we have "tr" in italics in the theorem environments
+\newcommand\Trace[1]{\TraceOperator\left(#1\right)}
+\newcommand\Transpose[1]{{#1}^\mathsf{T}}
+
+\newcommand\F{\mathbb{F}}
+\newcommand\R{\mathbb{R}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\D{\mathbb{D}}
+
+\newcommand\Var{\textsc{Var}}
+\newcommand\E{\mathbb{E}}
+
+\usepackage[boxed,vlined,linesnumbered]{algorithm2e} % Unused options: noend
+% http://tex.stackexchange.com/questions/153646/algorithm2e-disabling-line-numbers-for-specific-lines
+\let\oldnl\nl% Store \nl in \oldnl
+\newcommand{\nonl}{\renewcommand{\nl}{\let\nl\oldnl}}% Remove line number for one line
+
+\newcommand{\mycommfont}[1]{\scriptsize\sffamily{#1}}
+\SetCommentSty{mycommfont}
+\SetAlCapNameFnt{\small}
+\SetAlFnt{\small}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\newcommand\To{\textbf{ \emph{to} }}
+%\SetKwComment{Comment}{$\triangleright$\ }{}
+\DontPrintSemicolon
+\SetAlCapSkip{.7em} % http://tex.stackexchange.com/questions/139301/caption-spacing-using-algorithm2e
+
+%beging easychair%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some of our commands for this guide.
+%
+\newcommand{\easychair}{\textsf{easychair}}
+\newcommand{\miktex}{MiK{\TeX}}
+\newcommand{\texniccenter}{{\TeX}nicCenter}
+\newcommand{\makefile}{\texttt{Makefile}}
+\newcommand{\latexeditor}{LEd}
+
+
+%\makeindex
+
+%% Front Matter
+%%
+% Regular title as in the article class.
+%
+%end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\def\UrlFont{\rmfamily}
+
+
+%\hypersetup{pdfpagemode=FullScreen,}
+
+
+\title[AsianHOST 2024]{
+\textbf{Exact Template Attacks with Spectral Computation}
+}
+%\subtitle{Using Haar Wavelets}
+
+
+%\subtitle{PROOFS'2024}
+\author[M. Mahar, M. Ouladj, S. Guilley, et al.]{
+Meriem MAHAR %\texorpdfstring{\inst{1,2}} 
+\and 
+Maamar OULADJ  
+\and %\inst{2}
+\underline{Sylvain GUILLEY} \\%\inst{3} 
+\and 
+Hacène BELBACHIR %\inst{4}
+\and 
+Farid MOKRANE %\inst{1} 
+}
+
+
+% Institutes for affiliations are also joined by \and,
+\institute[]{
+Université Paris 8, LAGA, UMR 7539, Paris, France. 
+%E-mail: \texttt{meriem.mahar@etud.univ-paris8.fr}\;.
+\and
+%TODO\\ ouladj.maamar@gmail.com  
+%Centre de Recherche sur l'Information Scientifique et Technique 
+CERIST, Algiers, Algeria.
+\and
+	Secure-IC S.A.S.,
+ %Digital Park B, 801 avenue des Champs Blancs
+ Rennes, France, \\ \textit{and}
+	\'Ecole Normale Sup\'erieure (ENS), 
+ %45 Rue d'Ulm, 75005 
+ Paris, France. 
+\and
+CATI, RECITS Laboratory, 
+%Mathematics faculty, 
+USTHB, Algiers, Algeria. % hacenebelbachir@gmail.com 
+}
+\logo{AsianHOST'2024:\includegraphics[scale=0.12]{logo_AsianHOST.png}}
+\date{December 16-18, 2024.}
+
+\begin{document}
+
+
+
+\maketitle 
+	\logo{		
+	                \includegraphics[scale=.3]{logo-secure-ic.png}
+					\includegraphics[scale=.16]{Logo-CATI-eq1.png}				\includegraphics[scale=.08]{paris8.png}
+					\includegraphics[scale=.08]{laga.jpg}
+					\includegraphics[scale=.10]{cnrs.jpg}
+	
+	}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
+\begin{frame}{Books and Manuals about Side-Channel Analysis}
+\begin{center}
+%+ %\footnotesize
+%+ \scriptsize
+%+ \begin{tabular}{|m{16mm}|c|m{20mm}|m{40mm}|}
+%+ \hline
+%+ \bf Cover page & \bf Year & \bf Authors & \bf Title \\
+%+ \hline
+%+ % DPA book &
+%+ \includegraphics[width=16mm]{img/dpabook_cover.jpg} &
+%+ 2007 &
+%+ Stefan Mangard,
+%+ Elisabeth Oswald and
+%+ Thomas Popp
+%+ & \tiny
+%+ ``Power analysis attacks --- revealing the secrets of smart cards'', Springer \\ % \cite{DBLP:books/daglib/0017272}
+%+ \hline
+%+ % Advanced DPA &
+%+ \includegraphics[width=16mm]{img/book_eric_peeters.jpg} &
+%+ 2013 &
+%+ Eric Peeters
+%+ & \tiny
+%+ ``Advanced DPA Theory and Practice: Towards the Security Limits of Secure Embedded Circuits'', Springer \\ % \cite{peeters_advanced_DPA}
+%+ \hline
+%+ % Algorithmy &
+%+ \includegraphics[width=16mm]{img/book_ouladj.png} &
+%+ 2021 &
+%+ Maamar Ouladj and
+%+ Sylvain Guilley
+%+ & \tiny
+%+ ``Side-Channel Analysis of Embedded Systems --- An Efficient Algorithmic Approach'', Springer \\ % \cite{DBLP:books/sp/OuladjG21}
+%+ \hline
+%+ % Mathematical &
+%+ To appear \includegraphics[width=16mm]{img/logo_springer_horse.png} &
+%+ 2024 &
+%+ Wei Cheng,
+%+ Sylvain Guilley, and
+%+ Olivier Rioul
+%+ & \tiny
+%+ ``Mathematical Foundations for Side-Channel Analysis of Cryptographic Systems'', Springer Book 89249777 \\
+%+ \hline
+%+ \end{tabular}
+\scriptsize
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{|m{15mm}|>{\!}c<{\!}|>{\!}m{9mm}<{\!}|m{14mm}|>{\!\!\!}c<{\!\!\!}
+                |m{15mm}|>{\!}c<{\!}|>{\!}m{9mm}<{\!}|m{14mm}|}
+\cline{1-4}\cline{6-9}
+\GGC\bf Cover page & \GGC\bf Year & \GGC\bf Authors & \GGC\bf Title & &
+\GGC\bf Cover page & \GGC\bf Year & \GGC\bf Authors & \GGC\bf Title \\
+\cline{1-4}\cline{6-9}
+% DPA book &
+& & & &   & & & & \\[-3mm]
+\raisebox{-1mm}{\includegraphics[width=16mm]{img/dpabook_cover.jpg}} &
+2007 & \tiny
+Stefan Mangard,
+Elisabeth Oswald, % and
+Thomas Popp
+& \tiny
+\mytitle{Power analysis attacks --- revealing the secrets of smart cards}, Springer & & % \cite{DBLP:books/daglib/0017272}
+% Algorithmy &
+\raisebox{-1mm}{\includegraphics[width=16mm]{img/book_ouladj.png}} &
+2021 & \tiny
+Maamar Ouladj, % and
+Sylvain Guilley
+& \tiny
+\mytitle{Side-Channel Analysis of Embedded Systems --- An Efficient Algorithmic Approach}, Springer \\ % \cite{DBLP:books/sp/OuladjG21}
+& & & &   & & & & \\[-3mm]
+\cline{1-4}\cline{6-9}
+& & & &   & & & & \\[-3mm]
+% Advanced DPA &
+\raisebox{0mm}{\includegraphics[width=16mm]{img/book_eric_peeters.jpg}} &
+2013 & \tiny
+Eric Peeters
+& \tiny
+\mytitle{Advanced DPA Theory and Practice: Towards the Security Limits of Secure Embedded Circuits}, Springer & & % \cite{peeters_advanced_DPA}
+% Mathematical &
+% To appear \includegraphics[width=16mm]{img/logo_springer_horse.png} &
+\includegraphics[width=16mm]{img/22_math_SCA_book_cover} &
+2024 & \tiny
+Wei Cheng,
+Sylvain Guilley, % and
+Olivier Rioul
+& \tiny
+\mytitle{Mathematical Foundations for Side-Channel Analysis of Cryptographic Systems}, Springer \\ % Book 89249777 \\
+%& & & &   & & & & \\[-3mm]
+\cline{1-4}\cline{6-9}
+\end{tabular}
+\end{center}
+\end{frame}
+\begin{frame}
+
+\frametitle{Outline}
+
+\begin{itemize}
+
+\item  Introduction
+
+\pause
+
+\item Exact template attack distinguisher expression \newline
+\textcolor{red}{$\implies$ data complexity reduction}
+\pause
+
+\item Spectral expression of the distinguisher \newline
+\textcolor{red}{$\implies$ computational complexity reduction}
+\pause
+
+\item Experimental validation
+\pause
+
+\item Conclusion and perspectives
+
+\end{itemize}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+% \begin{frame}
+% 
+% \frametitle{Introduction: Side-Channel attacks}% si n est grand comment faire l'attaque avec un minimum de traces (pas 2^n)?
+% 
+% \begin{center} 				
+% \includegraphics[width=8cm]{senario1.png} \\
+% Side-Channel attacks
+% \end{center}
+% 
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+% \begin{frame}
+% 
+% \frametitle{Introduction: Side-Channel attacks}% si n est grand comment faire l'attaque avec un minimum de traces (pas 2^n)?
+% 
+% \begin{center} 				
+% \includegraphics[width=8cm]{senario2.png} \\
+% Side-Channel attacks
+% \end{center}
+% 
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+% \begin{frame}
+% 
+% \frametitle{Introduction: Side-Channel attacks}% si n est grand comment faire l'attaque avec un minimum de traces (pas 2^n)?
+% 
+% \begin{center} 				
+% \includegraphics[width=8cm]{senario3.png} \\
+% Side-Channel attacks 
+% \end{center}
+% 
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+% \begin{frame}
+% 
+% \frametitle{Introduction: Side-Channel attacks}% si n est grand comment faire l'attaque avec un minimum de traces (pas 2^n)?
+% 
+% \begin{center} 				
+% \includegraphics[width=8cm]{senario4.png} \\
+% SCA
+% \end{center}
+% 
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+% \begin{frame}
+% 
+% \frametitle{Introduction: Correlation Power Attack}% si n est grand comment faire l'attaque avec un minimum de traces (pas 2^n)?
+% 
+%   The correlation between the real leakage $M$ and the leakage model $V$ applied to the key $k$ is: 
+% 
+% \begin{center}
+% $\rho_{M,V_{k}}=\frac{cov(M,V_{k})}{\sigma_M . \sigma_{V_{k}}}= \frac{\left\langle M,V_{k}\right\rangle}{\left\|M\right\|\left\|V_{k}\right\|} $
+% \end{center}
+% \pause
+% 
+% \begin{center} 				
+% \includegraphics[width=10cm,height=5cm]{peaks_CPA.png} \\
+% Result of a Correlation Power Attack %($2^n$ clairs)
+% \end{center}
+% 
+% \end{frame}
+
+% \begin{frame}{Cryptography Is Pervasive}
+% 	\vspace{-3mm}
+% 	\begin{center}
+% 		\includegraphics[width=0.9\linewidth]{SIC_markets_cyberNcrypto.jpg}
+% 	\end{center}
+% \end{frame}
+% 
+% \begin{frame}{Information Leakage: \dotfill Extracting RSA Keys}
+% 	\framesubtitle{\hfill Seminal CRYPTO'96 paper: 6612 citations, till June 2023}
+% 	\begin{center}
+% 		\includegraphics[width=0.5\linewidth]{kocher_timing_attack} \\
+% 		\includegraphics[width=0.8\linewidth]{timing_attack} \\
+% 	\end{center}
+% 	%\pause
+% %	$\implies$
+% 	Modern cryptographic implementation is now \textbf{constant-time}.
+% \end{frame}
+
+\begin{frame}{Information Leakage: \dotfill Extracting DES Keys}
+	%\framesubtitle{\hfill Seminal CRYPTO'99 paper: 10351 citations, till June 2023}
+	\framesubtitle{\hfill Seminal CRYPTO'99 paper: 10351 citations.}
+	\begin{center}
+		\includegraphics[height=.35\linewidth]{dpa_crypto99} \ %
+		\includegraphics[height=.35\linewidth]{DPA_fig4.png}
+	\end{center}
+%	$\implies$
+%	Modern cryptographic implementation shall be \textbf{protected against SCAs}.
+\begin{center}
+\textcolor{red}{Simple monovariate attack.}
+\end{center}
+	
+%\footnote{\scriptsize Kocher et al. \textit{Differential Power Analysis}. CRYPTO 1999.}
+\end{frame}
+
+\begin{frame}{Information Leakage: \dotfill Device Analysis}
+	\vspace{-0.9cm}
+	\begin{center}
+	%Modern cryptographic implementation shall be \textbf{protected against SCAs}.
+		\includegraphics[width=0.9\linewidth]{em_sca.jpg}
+		%\caption{} 
+%		\newline
+%		Side-channel attacks against ECDH implementation.
+\begin{center}
+\textcolor{red}{But in practice, traces are vectorial.}
+\end{center}
+
+		\medskip
+
+		\scriptsize Daniel Genkin, Lev Pachmanov, Itamar Pipman, and Eran Tromer, \textit{ECDH key-extraction via low-bandwidth electromagnetic attacks on PCs}. CT-RSA 2016.
+%		\footnote{\scriptsize Genkin et al. \textit{ECDH key-extraction via low-bandwidth electromagnetic attacks on PCs}. CT-RSA 2016.}.
+	\end{center}
+%$\implies$
+\end{frame}
+
+% \begin{frame}{Information Leakage: \dotfill Device Analysis}
+% 	\begin{center}
+% 		\includegraphics[width=0.8\linewidth]{sca_explained_smartphone}
+% 	\end{center}
+% %	$\implies$
+% 	Information leakage through \textbf{power consumption}, \textbf{radiated electromagnetic field}, \textbf{clock frequency}, etc.
+% \end{frame}
+% 
+% \begin{frame}
+% 	\frametitle{Recent side-channel analyses \dotfill From the remote!}
+% 	\vspace{-10mm}
+% 	\begin{center}
+% 		\tiny % \scriptsize
+% 		\renewcommand\arraystretch{2.0}
+% 		\begin{tabular}{|m{18mm}|m{16mm}|m{76mm}|}
+% 			\hline
+% 			\textbf{\scriptsize Logo} & \textbf{\scriptsize Vuln. ID} & \textbf{\scriptsize Description} \\
+% 			\hline
+% 			\hline
+% 			\href{https://platypusattack.com/}{\includegraphics[height=1.1cm]{logos/logo_platypus.png}} &
+% 			\texttt{CVE-2020-8694} \texttt{CVE-2020-8695} &
+% 			With PLATYPUS, we present novel software-based power side-channel attacks on Intel server, desktop and laptop CPUs. We exploit the unprivileged access to the Intel RAPL interface exposing the processor's power consumption to infer data and extract cryptographic keys. \\
+% 			\hline
+% 			\href{https://www.hertzbleed.com/}{\includegraphics[height=1.2cm]{logos/logo_hertzbleed.png}} &
+% 			\texttt{CVE-2022-23823} &
+% 			Hertzbleed is a new family of side-channel attacks: frequency side channels. In the worst case, these attacks can allow an attacker to extract cryptographic keys from remote servers that were previously believed to be secure. \\
+% 			\hline
+% 			\href{https://tpm.fail/}{\includegraphics[height=1.2cm]{logos/logo_tpmfail.png}} &
+% 			\texttt{CVE-2019-11090} &
+% 			They are practical. A local adversary can recover the ECDSA key from Intel fTPM in 4-20 minutes depending on the access level. We even show that these attacks can be performed remotely on fast networks, by recovering the authentication key of a virtual private network (VPN) server in 5 hours. \\
+% 			\hline
+% 			\href{https://minerva.crocs.fi.muni.cz/}{\includegraphics[height=1.2cm]{logos/logo_minerva.png}} &
+% 			\texttt{CVE-2019-15809} %\&
+% 			\texttt{CVE-2019-13627} %\&
+% 			\texttt{CVE-2019-13627} %\&
+% 			\texttt{CVE-2019-13629} %\&
+% 			\texttt{CVE-2019-14318} &
+% 			This page describes our discovery of a group of side-channel vulnerabilities in implementations of ECDSA in programmable smart cards and cryptographic software libraries. Our attack allows for practical recovery of the long-term private key. \\
+% 			\hline
+% 			\href{https://sgaxe.com/}{\includegraphics[height=0.7cm]{logos/logo_cacheout.png}\ \ \includegraphics[height=0.7cm]{logos/logo_sgaxe.png}} &
+% 			\texttt{CVE-2020-0549} &
+% 			We present CacheOut, a new speculative execution attack that is capable of leaking data from Intel CPUs across many security boundaries.
+% 			
+% 			SGAxe is an evolution of CacheOut, specifically targeting SGX enclaves.\\
+% 			\hline
+% 		\end{tabular}
+% 	\end{center}
+% \end{frame}
+% 
+% {
+% 	\usebackgroundtemplate{\tikz\node[opacity=0.3]{\includegraphics[width=\paperwidth]{cyber-security.jpg}};}%
+% 	\begin{frame}{Principle}\centering
+% 		
+% 		\Large\bfseries
+% 		
+% 		
+% 		We are always ``insecure'' : it's a matter of time
+% 		
+% 		\vspace*{1cm}%\pause
+% 		
+% 		The question is \emph{not} whether you are secure or not,
+% 		
+% 		\vspace*{1cm}
+% 		
+% 		but: \emph{how much are you (in)secure?}
+% 	\end{frame}
+% }%ø
+% 
+% \iffalse
+% \begin{frame}{In Practice}
+% 	\centering
+% 	\includegraphics[width=.9\textwidth]{probe} % acquisition card
+% \end{frame}
+% \addtocounter{framenumber}{-1}
+% \fi
+% 
+% \begin{frame}{In Practice}
+% 	\centering
+% 	%\includegraphics[width=.9\textwidth]{chipprobed.jpg}
+% 	\includegraphics[width=.65\textwidth]{flyprobe19_kav.jpg}
+% \end{frame}
+% 
+
+% \begin{frame}{In Practice}
+% 	\centering
+% 	%\includegraphics[width=.9\textwidth]{chipprobed.jpg}
+% 	\includegraphics[width=.65\textwidth]{EMA_setup.png}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+\begin{frame}
+
+\frametitle{Mathematical model and notations}
+We model the side-channel problem as follows:
+
+\begin{itemize}
+\item $X$ is the digital part known by the attacker, typically some plaintext or ciphertext (\textcolor{red}{$n$}-bit wide);
+\pause \item $k$ is the digital part unknown by the attacker, typically some part of key, which is fixed;
+\pause \item $Z$ is the vectorial Boolean function of $T$ and $k$ in which there is a leakage; Typically, $Z$ is a function of $X\oplus k$
+\pause \item $M$ is the leakage model corresponding to $Z$;
+\pause \item $L$ is the side-channel leakage measured by the attacker;
+\pause \item $N$ is the noise.
+\pause 
+
+Such that:
+\begin{equation*}
+X,k \rightarrow
+Z \pause 
+\rightarrow
+M(Z) = M \pause
+\rightarrow
+L = M+N .
+\label{eqn-markov_chain}
+\end{equation*}
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+\begin{frame}
+
+\frametitle{Mathematical model and notations}
+
+\begin{itemize}
+
+\item Those variables are measured many times (\textcolor{red}{$Q$} times);
+\pause 
+%Therefore the random variables have a dimensionality $Q$, with the particularity that $k$ is the same for all $Q$, and that
+
+\item The noise $N$ are all i.i.d, such that $N \sim \mathcal{N}(0, \Sigma);$
+\pause 
+%La désignation « indépendantes et identiquement distribuées » regroupe deux notions : l'indépendance et la loi de probabilité. L'indépendance est une propriété qui régit les relations des variables entre elles, tandis que la notion d'identiquement distribuée se réfère à la faculté de chacune des variables de suivre la même loi de probabilité que les autres variables de la suite.
+
+\item The measurements are multidimensional of dimensionality \textcolor{red}{$D$};
+\pause 
+
+\item Oscilloscopes: $D$ samples per trace and several samples per clock period;%,typically at high sampling rates,
+\pause
+%\item  $Z\in\{0,1\}^n$ where $n$ is such that $S=2^n$; %$S$= $#(Z)$ leaves in, that is
+%\pause
+\item $\Sigma$: the $D\times D$ covariance matrix of the noise.%($0\leq q<D$)
+
+\end{itemize}
+\pause
+\begin{center}
+\includegraphics[height=2cm]{average_trace.png}\ %
+\includegraphics[height=2cm]{gaussian2d_2.png}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+\begin{frame}
+
+\frametitle{Mathematical model and notations}
+
+
+
+If the adversary has an identical copy of the target crypto system:%\TODO{}.
+\pause
+
+
+
+
+\textcolor{blue}{Template attack = Profiling stage + Matching stage.}
+\pause
+
+\begin{itemize}
+\item Profiling stage: according to the maximum likelihood principle, the model matrix $M_k$ and the covariance matrix $\Sigma$ are estimated as:
+
+\medskip
+
+%$Y_k= \frac{1}{p_k} \sum_{k} X_k$;
+$M_k= average(L_k)$;
+\ \ \ \ \ \ \ $\Sigma=   \frac1Q (L L^\mathsf{T} - M M^\mathsf{T})$;
+%\pause
+%\begin{itemize}
+%\item $N_q=L_q-M_{q,k}$
+%\item $p_{N_q}(L_q-M_{q,k})=\frac{1}{\sqrt{(2\pi)^Q |\Sigma|}}e^{-\frac{1}{2}(L_q-M_{q,k})^T \Sigma^{-1}(L_q-M_{q,k})}$
+%\end{itemize}
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+\begin{frame}
+
+\frametitle{Mathematical model and notations}
+
+\textcolor{blue}{Template attack = Profiling stage + Matching stage.}
+\pause
+
+\begin{itemize}
+\item Matching stage: %applying Bayes’ rule;
+
+\begin{itemize}
+\item $L = M_{k^*}+N$ \quad: $D\times Q$ matrices
+\item $p_{N_q}(L_q-M_{q,k})=\frac{1}{\sqrt{(2\pi)^Q |\Sigma|}}e^{-\frac{1}{2}(L_q-M_{q,k})^T \Sigma^{-1}(L_q-M_{q,k})}$
+\item Since $N$ is independent from $M_k$:\\
+\begin {align*}
+p(L|M_{k})=p_N(L-M_{k})&=\prod_{q}p_{N_q}(L_q-M_{q,k})\\
+\end {align*}
+\end{itemize}
+\end{itemize}
+\pause
+\vspace{-2cm}
+\begin{theorem}[{{Theorem~1 of~\cite{DBLP:journals/jce/BruneauGHMR17}}}]
+\label{thm-template}
+Template attacks guess the key as:
+\begin{equation*}
+\hat{k} = \argmin_k \ \TraceOperator(\transpose{(L-M_k)} \Sigma^{-1} (L-M_k)). 
+\label{eqn-template_tr_q}
+\end{equation*}
+\end{theorem}
+
+%tr: the matrix trace as a norm of positive definite symmetric matrices.
+
+%%symmetric=>diagonalisable
+%%positive definite <=> all eigenvalues are positive
+
+\pause
+
+%\item Problème de complexité du calcul et de l'espace mémoire!
+\textcolor{red}{A scalability problem!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Optimization}
+The guessed key can be carried out by~\cite{OULADJ2019, ouladj2021side}: %
+%
+\begin{equation}
+\Hat{k} = \argmin_k \sum_{x=0}^{2^n-1} n_x(\Tilde{L}_x - \Tilde{M}_{x, k})^\mathsf{T} \Sigma^{-1} ( \Tilde{L}_x  -  \Tilde{M}_{x, k}) \ .
+\label{coalesced_TA}
+\end{equation}
+%The equation~\eqref{coalesced_TA} can be read as a matrix trace over the plaintext space (or the ciphertext), weighted by $n_x$ values. 
+\vspace{-2mm}
+where:
+\begin{itemize}
+\item $n_x$ is the number of times the message $x$ is involved,
+\item $\Tilde{L}_x$ is the average trace over all the traces corresponding to the same message $x$,
+\item $\Tilde{M}_{x,k}$ is leakage model corresponding to the pair $(x,k)$. 
+\item $\Sigma = \frac1N L L^\mathsf{T} - \frac1{2^n} \tilde{M} \tilde{M}^\mathsf{T}$ %\nllabel{Improved_alg-estimation_of_y__line10} 
+%\item $\tilde{\mathbb{M}} = \Sigma^{-1} \tilde{M}$ %\nllabel{Improved_alg-estimation_of_y__line11} 
+\end{itemize}
+\pause
+
+%It is essential to point out that the attack presented by the last equation is exactly the same as that of the equation~\eqref{TA}, and so they will succeed with the same number of traces. 
+%However, 
+The attack~\eqref{coalesced_TA} is more efficient in terms of computation, and memory space, than the theorem~\ref{eqn-template_tr_q}, as soon as the number of traces $Q$ is greater than the number of plaintexts involved in the leakage model (e.g., for $AES$, it is $Q > 2^n = 256$). 
+
+%This gain applies to both the profiling and the matching phases. 
+%However, we emphasize that profiling requires many more traces than matching, so most of the gain from using coalesced data comes from the model-building phase.
+
+
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Optimization}
+
+\color{blue}
+State of the art = \textbf{coalescence}:
+replace
+$n_x$ by $1/2^n$, $\forall x\in\{0, \ldots, 2^n-1\}$.
+
+\medskip
+\hrule
+\medskip
+
+Obviously, this is untrue, because traces are acquired one-by-one, hence one cannot make the assumption that every class is equally populated!
+
+\medskip
+\hrule
+\medskip
+\color{black}
+
+%In what follows, we will demonstrate how to 
+To compute~\eqref{coalesced_TA} without using the approximation by the LLN, contrary to the state of the art, one can consider:
+
+%De l'éqle à uation (\ref{coalesced_TA}), on a: 
+
+\begin{proposition}[Exact Template Attack -- Expression of the Maximum Likelihood Distinguisher]
+\label{Exact_Template_Attack}
+$$\Hat{k} = \argmin_k \space \sum_{x=0}^{2^n-1} n_x \Tilde{M}^\mathsf{T}_{x \oplus k} \Sigma^{-1}  \Tilde{M}_{x \oplus k} - 2\sum_{x=0}^{2^n-1}(n_x \Tilde{L}^\mathsf{T}_x)(\Sigma^{-1}\Tilde{M}_{x\oplus k}) \ .$$
+\end{proposition}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Spectral expression}
+
+
+Recalling that, for any pair of pseudo-Boolean functions $f$ and $g$, we have: 
+\begin{align*}
+\sum_{x=0}^{2^n-1}f(x).g(x \oplus k)&=(f \otimes g)(k)%\\[-3mm]
+%&=WHT^{-1}(WHT(f) \bullet WHT(g))(k)\\
+=WHT(WHT(f) \bullet WHT(g))(k) ,
+\end{align*}
+where 
+\begin{enumerate}
+    \item ``$\bullet$'' denotes the direct product between two pseudo-Boolean functions (that is, the term-to-term product),
+    \item ``$\otimes$'' denotes the convolution product between two pseudo-Boolean functions,
+    \item $WHT$ denotes the Walsh-Hadamard Transform. %This transform is defined as:
+$$WHT(f)(u) = \sum_x (-1)^{u \cdot x} f(x).$$
+\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+
+\frametitle{Spectral expression}
+
+\begin{small}
+\begin{align*}
+\Hat{k} = \argmin_k& \  \sum_{x=0}^{2^n-1} n_x \Tilde{M}^\mathsf{T}_{x \oplus k} \Sigma^{-1}  \Tilde{M}_{x \oplus k} - 2\sum_{x=0}^{2^n-1}(n_x \Tilde{L}^\mathsf{T}_x)(\Sigma^{-1}\Tilde{M}_{x\oplus k}) \\
+%= \argmin_k & \  \sum_{x=0}^{2^n-1} n_{x\oplus k} \Tilde{M}^\mathsf{T}_{x } \Sigma^{-1}  \Tilde{M}_{x } - 2\sum_{x=0}^{2^n-1}(n_x \Tilde{L}^\mathsf{T}_x)(\Sigma^{-1}\Tilde{M}_{x\oplus k}) \\
+=\argmin_k & \  n(.)\otimes \mathcal{M}(.)(k) -2 \sum_{u=1}^{D} L_{cumul}[u] \otimes \Tilde{\mathbb{M}}[u](k)\\
+%=\argmin_k & \  WHT\Big[WHT(n) \bullet WHT(\mathcal{M})\big](k) \\ &-2WHT\big[\sum_{u=1}^{D} WHT(L_{cumul}[u]) \bullet WHT(\Tilde{\mathbb{M}}[u])\Big](k)\\
+=\argmin_k & \  WHT\Big[WHT(n) \bullet WHT(\mathcal{M})  -2\sum_{u=1}^{D} WHT(L_{cumul}[u]) \bullet WHT(\Tilde{\mathbb{M}}[u])\Big](k).
+\end{align*} 
+\end{small}
+
+\pause 
+
+So, we can carry out an exact template attack, by pre-processing $WHT(\mathcal{M})$, $WHT(\Tilde{\mathbb{M}}[u])$ (for each $u$ value), during the profiling phase, then guessing the key $\Hat{k}$ accordingly.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Results and experimental validation}
+
+\begin{itemize}
+\item We employed raw traces from the SCA database (ASCAD) of the French National Agency for Information Systems Security (ANSSI)~\cite{emmanuel2018study}.
+%Cette plateforme ouverte des données publiques françaises a pour but d'avoir quelque chose de similaire à la base de données MNIST que la communauté du Machine Learning utilise depuis un certain temps déjà pour évaluer les performances des algorithmes de classification.
+\pause
+
+\item The encryption algorithm target %of our attacks 
+is a protected software implementation of AES  %(with $128$-bit key), 
+running on an \textsc{ATMEGA-8515} $\mu$-processor.%, which has an \textsc{AVR-8} bit architecture. 
+%The software aims to protect against first-order SCAs, using a Boolean secret-sharing scheme based on the table recalculation method, although the first two bytes of the AES state are unprotected, to enable for comparison (refer to~\cite[\S2.5.1]{emmanuel2018study}).
+\pause
+
+
+\item The target variable is 
+%the output of an $\mathsf{SBox}$, in the first round, i.e., 
+$Z = \mathsf{SBox} (x[2] \oplus k[2])$.
+
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Results and experimental validation: Success rate /\#traces}
+\framesubtitle{Blue = coalescence -- red = our approach.}
+
+\begin{figure}
+
+%    \includegraphics[scale=0.25]{Fig/200_D1.PNG}
+%    \caption{$D=1$}
+    
+
+    \includegraphics[scale=0.25]{Fig/200_D2.PNG}
+    \caption{$D=2$}
+
+        
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Results and experimental validation: Success rate /\#traces}
+\framesubtitle{Blue = coalescence -- red = our approach.}
+
+
+\begin{figure}
+
+    \includegraphics[scale=0.25]{Fig/200_D3.PNG}
+    \caption{$D=3$}
+    
+
+    
+    \includegraphics[scale=0.25]{Fig/200_D4.PNG}
+    \caption{$D=4$}
+   
+         
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Results and experimental validation: Success rate /\#traces}
+\framesubtitle{Blue = coalescence -- red = our approach.}
+
+
+\begin{figure}   
+     \includegraphics[scale=0.25]{Fig/200_D5.PNG}  
+    \caption{$D=5$}
+
+    
+    \includegraphics[scale=0.25]{Fig/200_D10.PNG}
+    \caption{$D=10$}
+
+        
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Results and experimental validation: Success rate /\#traces}
+\framesubtitle{Blue = coalescence -- red = our approach.}
+
+
+\begin{figure}    
+    \includegraphics[scale=0.25]{Fig/200_D20.PNG}
+    \caption{$D=20$}
+    
+    %\includegraphics[scale=0.25]{Fig/200_D30.PNG}
+    %\caption{$D=30$}
+    
+    \includegraphics[scale=0.25]{Fig/200_D50.PNG}
+    \caption{$D=50$}
+       
+    %\caption{Success rate according to the number of traces (\colorbox[rgb]{0.9,0.9,0.9} {until $N=200$}), for different values of $D$, with: ({\color{blue}{$\bullet$}}): coalescence and ({\color{red}{$\bullet$}}): our improvement}
+
+    
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Results and experimental validation: Computation time}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\linewidth]{Fig/temps_de_calcul.PNG}
+\end{center}
+%\caption{Computation time according to $D$ with: ({\color{blue}{$\bullet$}}): coalescence and ({\color{red}{$\bullet$}}): our improvement}
+\label{temps de calcul}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Conclusions and perspectives}
+
+\textbf{Conclusions:}
+\begin{itemize}
+
+\item  New improvement in template attacks' success rate, by not using coalescence;
+\pause
+\item At the same time, computational complexity is reduced
+thanks to a spectral computation;
+
+\pause
+\item A quasilinear instead of a quadratic time complexity ($32x$ faster);
+
+\pause
+\item Can be applied to any algorithms that involve SBox whose input is the $XOR$;
+\pause
+
+\item  Considerable gain in success rate comes at the expense of a marginal loss in computation time, which is explained in terms of complexity.
+
+\medskip
+\end{itemize}
+\underline{Source code:} \url{https://github.com/SylvainGuilley/Exact_Template_Attacks_With_Spectral_Computation/tree/master}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\frametitle{Conclusions and perspectives}
+
+\textbf{Perspectives:}
+\begin{itemize}
+
+\item  How these improvements behave with countermeasures?
+\pause
+
+
+\item This approach should be extended to the Linear Regression Analysis (LRA) in~\cite{DBLP:conf/cosade/OULADJ2020}.
+
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Template SCA with Spectral Computation}
+
+\centering
+\Huge Thank you for your attention
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\bibliographystyle{plain}
+\bibliography{sca} % export BIBINPUTS=$BIBINPUTS:/home/${USER}/articles/common/bibliography/:
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
